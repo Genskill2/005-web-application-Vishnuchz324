@@ -15,22 +15,18 @@
   </h6>
 <form action="{{url_for('pets.edit', pid=id)}}" method="POST">
   <div class="mb-3">
-    <label for = "description" class="form-label">Description</label><br/>
-    <textarea rows="10" id="description" class="form-control"
-              name="description">
-      {{description}}
-    </textarea>
-    <label for="sold" class='form-label'>sold</label><br/>
-    <input type="date" id="sold" clas="form-control" name="sold">{{sold}}</input>
+    <label for = "description" class="description form-label">Description</label><br/>
+    <textarea rows="10" id="description" class=" description form-control"
+              name="description">{{description}}</textarea>
+    <br/>
   </div>
 
   <div class="mb-3">
     <div class="form-check">
-      {# TODO  Add sold checkbox here #}
-      <label class="form-check-label" for="sold" > Sold </label>
+      <label class="form-label" for="sold" > Sold </label>
+      <input class="form-date-input" name='sold' type="date" value="{{sold}}" id="sold" >
     </div>
   </div>
-
   <div class="mb-3">
     <button type="submit" class="btn btn-primary">Update</button>
   </div>

@@ -116,9 +116,7 @@ def test_sorting_id(client):
     soup = BeautifulSoup(resp.data, 'html.parser')
     tags = soup.find_all("td", {"class" : "petid"})
     actual = [int(x.text.strip()) for x in tags]
-
     assert ex == actual
-
     resp = client.get("/?order_by=id&order=desc")
     soup = BeautifulSoup(resp.data, 'html.parser')
     tags = soup.find_all("td", {"class" : "petid"})
@@ -181,7 +179,8 @@ def test_edit_description(client):
     resp = client.get("/11/edit")
     client.post("/11/edit", data ={"description": "dying horde"})
     resp = client.get("/11")
-    soup = BeautifulSoup(resp.data, 'html.parser')    
+    soup = BeautifulSoup(resp.data, 'html.parser') 
+    text = soup.find("p", {"class": "description"}).text.strip() == """dying horde"""
     assert soup.find("p", {"class": "description"}).text.strip() == """dying horde"""
 
 def test_edit_sold(client):
